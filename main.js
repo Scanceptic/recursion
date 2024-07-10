@@ -11,3 +11,16 @@ function fibs(number) {
 	}
 	return array;
 }
+
+function fibsRec(number, array = [0, 1]) {
+	// base case
+	if (array.length === number) {
+		// if array has reached required length
+		return array;
+	} else {
+		// else add a new element onto array equal to sum of last 2 elements
+		array.push(array[array.length - 1] + array[array.length - 2]);
+		// call fibsRec on new array to continue until array is complete
+		return fibsRec(number, array);
+	}
+}
