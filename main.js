@@ -24,3 +24,33 @@ function fibsRec(number, array = [0, 1]) {
 		return fibsRec(number, array);
 	}
 }
+
+function mergeSort(array, sortedArray = []) {
+	// base case
+	if (sortedArray.length === array.length) {
+		return sortedArray;
+	} else {
+		// do something
+		let lowestValue;
+		// go from start to end of array
+		for (let i = 0; i < array.length; i++) {
+			// if i is less than the current lowest value or no current lowest value exists
+			if (
+				typeof array[i] !== "string" &&
+				(array[i] < lowestValue || typeof lowestValue === "undefined")
+			) {
+				// replace held lowest value with i
+				lowestValue = array[i];
+				//console.log(lowestValue);
+			}
+		}
+		// push lowest value to sortedArray
+		sortedArray.push(lowestValue);
+		//console.log(sortedArray);
+		// remove lowest value from original array and replace with empty string
+		array.splice(array.indexOf(lowestValue), 1, " ");
+		//console.log(array);
+		// return mergeSort(array, sortedArray) again
+		return mergeSort(array, sortedArray);
+	}
+}
